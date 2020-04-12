@@ -1,18 +1,29 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    <h1>Playground V2</h1>
+ 
+  <p>{{names}}</p>
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+//import firebase from 'firebase'
+import db from '@/firebase/init'
 
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  data(){
+    return{
+      names:null
+    }
+  },
+  created(){
+    let ref = db.collection('playground').get()
+    console.log(ref)
   }
+
 }
 </script>
