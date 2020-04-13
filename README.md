@@ -1,5 +1,7 @@
 # playground_v2
 
+A project for playing around and testing stuff
+
 ## Project setup
 ```
 npm install
@@ -22,3 +24,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
