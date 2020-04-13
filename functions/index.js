@@ -11,7 +11,7 @@ admin.initializeApp()
 
 
 
-// exports.someFunction = functions.https.onCall((data,context) => {
+exports.someFunction = functions.https.onCall((data,context) => {
 
- 
-// })
+    return ` hello Mike`
+})

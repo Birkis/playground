@@ -1,28 +1,53 @@
 <template>
-  <div class="home">
+  <v-container class="home">
 
-    <h1>Playground V2</h1>
+  <h1>Playground V2</h1>
  
-  <p>{{names}}</p>
+  <p>{{names.name}}</p>
+  <p>{{payload}}</p>
+  <v-btn @click.prevent="playIt">
+    clickMe
+  </v-btn>
 
-  </div>
+
+  </v-container>
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
+
 // @ is an alias to /src
-//import firebase from 'firebase'
+import firebase from 'firebase/app'
 import db from '@/firebase/init'
+import functions from 'firebase/functions'
+
+
 
 export default {
   name: 'Home',
   data(){
     return{
-      names:null
+      names:'',
+      payload:''
     }
   },
+  methods:{
+    playIt(){
+        let testFunc = firebase.functions().httpsCallable('someFunction')
+        testFunc().then(result => {
+            this.payload = result.data
+          })
+    }
+
+  },
   created(){
-    let ref = db.collection('playground').get()
-    console.log(ref)
+  db.collection('playground').get().then( data =>{
+    data.forEach( result => {
+      this.names = result.data()
+      })
+    })
+
+
   }
 
 }
